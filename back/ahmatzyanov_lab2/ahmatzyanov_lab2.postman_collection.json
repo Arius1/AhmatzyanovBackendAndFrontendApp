@@ -263,14 +263,7 @@
 			"name": "GetTokenUser",
 			"request": {
 				"auth": {
-					"type": "bearer",
-					"bearer": [
-						{
-							"key": "token",
-							"value": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJodHRwOi8vc2NoZW1hcy54bWxzb2FwLm9yZy93cy8yMDA1LzA1L2lkZW50aXR5L2NsYWltcy9uYW1lIjoiYWRtaW4iLCJodHRwOi8vc2NoZW1hcy5taWNyb3NvZnQuY29tL3dzLzIwMDgvMDYvaWRlbnRpdHkvY2xhaW1zL3JvbGUiOiIwIiwibmJmIjoxNjQ5MDk3NjU1LCJleHAiOjE2NDkwOTc5NTUsImlzcyI6IkdTX1NlcnZlciIsImF1ZCI6Ik15QXV0aENsaWVudCJ9.4GhOIaeI5vDcv_dwcQwJWmvpc7ISSOcHdeh9l-FV4Fo",
-							"type": "string"
-						}
-					]
+					"type": "noauth"
 				},
 				"method": "POST",
 				"header": [],
@@ -303,14 +296,7 @@
 			"name": "GetTokenAdmin",
 			"request": {
 				"auth": {
-					"type": "bearer",
-					"bearer": [
-						{
-							"key": "token",
-							"value": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJodHRwOi8vc2NoZW1hcy54bWxzb2FwLm9yZy93cy8yMDA1LzA1L2lkZW50aXR5L2NsYWltcy9uYW1lIjoiYWRtaW4iLCJodHRwOi8vc2NoZW1hcy5taWNyb3NvZnQuY29tL3dzLzIwMDgvMDYvaWRlbnRpdHkvY2xhaW1zL3JvbGUiOiIwIiwibmJmIjoxNjQ5MDk3NjU1LCJleHAiOjE2NDkwOTc5NTUsImlzcyI6IkdTX1NlcnZlciIsImF1ZCI6Ik15QXV0aENsaWVudCJ9.4GhOIaeI5vDcv_dwcQwJWmvpc7ISSOcHdeh9l-FV4Fo",
-							"type": "string"
-						}
-					]
+					"type": "noauth"
 				},
 				"method": "POST",
 				"header": [],

@@ -53,11 +53,12 @@ namespace ahmatzyanov_lab2.Controllers
             using (AuthContext authContext = new AuthContext())
             {
 
-                User person = authContext.Users.FirstOrDefault(x => x.Login == login && x.Password == password);
-                //User p2 = new User { Login = login, Password = password };
-
-                //if (person != null && person.CheckPassword(password))
-                if (person != null)
+                User person = authContext.Users.FirstOrDefault(x => x.Login == login);
+                //User person = authContext.Users.FirstOrDefault(x => x.Login == login && x.Password == password);
+                //User person = new User { Login = login, Password = password };
+                Console.WriteLine(person.hashPass);
+                if (person != null && person.CheckPassword(password))
+                //if (person != null)
                 {
                     var claims = new List<Claim>
                     {

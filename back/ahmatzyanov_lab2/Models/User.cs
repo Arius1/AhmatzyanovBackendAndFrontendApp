@@ -16,18 +16,24 @@ namespace ahmatzyanov_lab2.Models
         public int Id { get; set; }
         public string Login { get; set; }
         public RoleNames Role { get; set; }
-        //private byte[] password;
-        //[JsonIgnore]
-        //public string Password
-        //{
-        //    get
-        //    {
-        //        return password.ToString();
-        //    }
-        //    set { password = new SHA256CryptoServiceProvider().ComputeHash(Encoding.UTF8.GetBytes(value)); }
-        //}
+        [JsonIgnore]
+        public byte[] hashPass { get; set; }
+        [NotMapped]
+        [JsonIgnore]
+        public string Password
+        {
+            get
+            {
+                return null;
+            }
+            set { hashPass = new SHA256CryptoServiceProvider().ComputeHash(Encoding.UTF8.GetBytes(value)); }
+        }
         public bool IsAdmin => Role == RoleNames.Admin;
-        //public bool CheckPassword(string password) => new SHA256CryptoServiceProvider().ComputeHash(Encoding.UTF8.GetBytes(password)) == this.password;
-        public string Password { get; set; }
+        public bool CheckPassword(string password)
+        {
+            byte[] checkedHash = new SHA256CryptoServiceProvider().ComputeHash(Encoding.UTF8.GetBytes(password));
+            return checkedHash.SequenceEqual(this.hashPass);
+
+        }
     }
 }
