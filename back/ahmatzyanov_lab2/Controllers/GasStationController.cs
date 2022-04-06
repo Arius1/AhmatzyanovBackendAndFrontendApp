@@ -7,6 +7,7 @@ using ahmatzyanov_lab2.Models;
 using ahmatzyanov_lab2.Services;
 using ahmatzyanov_lab2.Contexts;
 using Microsoft.AspNetCore.Authorization;
+using static ahmatzyanov_lab2.Models.FuelNames;
 
 // For more information on enabling Web API for empty projects, visit https://go.microsoft.com/fwlink/?LinkID=397860
 
@@ -61,25 +62,19 @@ namespace ahmatzyanov_lab2.Controllers
         [Authorize]
         public IEnumerable<object> GetFuelsOnly()
         {
-            using (GasStationWithFuelsContext db = new GasStationWithFuelsContext())
-            {
-                var q = from gs in db.GasStations
-                        join f in db.Fuels on gs.Id equals f.GasStationId
-                        select new { GasStationName = gs.Name, Fuel = f.Brand.ToString() };
-                return q.ToList();
-            }
+            return gasStationService.GetFuelsOnly();
         }
         [HttpGet("fuelsOnlyWithPrice")]
         [Authorize]
         public IEnumerable<object> GetFuelsOnlyWithPrice()
         {
-            using (GasStationWithFuelsContext db = new GasStationWithFuelsContext())
-            {
-                var q = from gs in db.GasStations
-                        join f in db.Fuels on gs.Id equals f.GasStationId
-                        select new { GasStationName = gs.Name, Fuel = f.Brand.ToString(), FuelPrice = f.Price };
-                return q.ToList();
-            }
+            return gasStationService.GetFuelsOnlyWithPrice();
+        }
+
+        [HttpGet("fuelsWithPrice/{brand}")]
+        public IEnumerable<object> GetGasStationWithBrand(Brands brand)
+        {
+            return gasStationService.GetGasStationWithBrand(brand);
         }
     }
 }

@@ -4,6 +4,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
 using ahmatzyanov_lab2.Models;
+using static ahmatzyanov_lab2.Models.FuelNames;
 
 namespace ahmatzyanov_lab2.Services
 {
@@ -38,6 +39,18 @@ namespace ahmatzyanov_lab2.Services
         public GasStation getGasStationWithFuels(int id)
         {
             return dbc.selectGasStationWithFuels(id);
+        }
+        public IEnumerable<object> GetFuelsOnly()
+        {
+            return dbc.GetFuelsOnly();
+        }
+        public IEnumerable<object> GetFuelsOnlyWithPrice()
+        {
+            return dbc.GetFuelsOnlyWithPrice();
+        }
+        public IEnumerable<object> GetGasStationWithBrand(Brands brand)
+        {
+            return dbc.GetGasStationWithBrand(brand);
         }
     }
 }
