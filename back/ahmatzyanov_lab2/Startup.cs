@@ -30,6 +30,7 @@ namespace ahmatzyanov_lab2
         // This method gets called by the runtime. Use this method to add services to the container.
         public void ConfigureServices(IServiceCollection services)
         {
+            services.AddCors();
             services.AddControllers().AddNewtonsoftJson(x => x.SerializerSettings.ReferenceLoopHandling = Newtonsoft.Json.ReferenceLoopHandling.Ignore);
             services.AddAuthentication(JwtBearerDefaults.AuthenticationScheme)
                     .AddJwtBearer(options =>
@@ -55,6 +56,7 @@ namespace ahmatzyanov_lab2
                             ValidateIssuerSigningKey = true,
                         };
                     });
+
         }
 
         // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.
@@ -64,7 +66,12 @@ namespace ahmatzyanov_lab2
             {
                 app.UseDeveloperExceptionPage();
             }
-
+            app.UseCors(cpb => cpb
+                .SetIsOriginAllowed(_ => true)
+                .AllowAnyMethod()
+                .AllowAnyHeader()
+                .AllowCredentials()
+            );
             app.UseHttpsRedirection();
 
             app.UseRouting();

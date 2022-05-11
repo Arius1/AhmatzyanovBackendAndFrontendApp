@@ -55,7 +55,6 @@ namespace ahmatzyanov_lab2.Controllers
 
                 User person = authContext.Users.FirstOrDefault(x => x.Login == login);
 
-                Console.WriteLine(person.hashPass);
                 if (person != null && person.CheckPassword(password))
                 {
                     var claims = new List<Claim>
