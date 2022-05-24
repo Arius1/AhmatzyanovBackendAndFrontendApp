@@ -9,6 +9,7 @@ using System.Security.Claims;
 using ahmatzyanov_lab2.Auth;
 using ahmatzyanov_lab2.Contexts;
 using Microsoft.AspNetCore.Authorization;
+using System.Net;
 
 namespace ahmatzyanov_lab2.Controllers
 {
@@ -29,7 +30,7 @@ namespace ahmatzyanov_lab2.Controllers
             var identity = GetIdentity(userToFind.login, userToFind.password);
             if (identity == null)
             {
-                return new { message = "wrong login/password" };
+                return new { message = "User or password incorrect!" };
             }
             new ClaimsIdentity(claims, "Token", ClaimsIdentity.DefaultNameClaimType,
                 ClaimsIdentity.DefaultRoleClaimType);

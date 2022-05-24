@@ -4,6 +4,7 @@ using System.ComponentModel.DataAnnotations.Schema;
 using System.Linq;
 using System.Threading.Tasks;
 using static ahmatzyanov_lab2.Models.FuelNames;
+using Newtonsoft.Json;
 
 namespace ahmatzyanov_lab2.Models
 {
@@ -15,8 +16,8 @@ namespace ahmatzyanov_lab2.Models
         public Brands Brand { get; set; }
         public int Price { get; set; }
         public int Value { get; set; }
-
-        public int GasStationId { get; set; }
+        public int GasStationId { get; set; } 
+        [JsonIgnore]
         public GasStation? GasStation { get; set; }
 
         public Fuel(Brands brand, int price, int value, int gasStationId, GasStation? gasStation)
