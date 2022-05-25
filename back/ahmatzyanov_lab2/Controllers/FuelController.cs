@@ -29,8 +29,7 @@ namespace ahmatzyanov_lab2.Controllers
         }
 
         [HttpGet("withGasStation/{id}")]
-        [Authorize]
-        public Fuel GetWithGasStation(int id)
+        public IEnumerable<Fuel> GetWithGasStation(int id)
         {
             return fuelService.getWithGasStation(id);
         }

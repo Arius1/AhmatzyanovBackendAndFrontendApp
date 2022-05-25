@@ -33,7 +33,7 @@ namespace ahmatzyanov_lab2.Services
             Fuel fuel = getFuelById(id);
             dbc.deleteFuel(fuel);
         }
-        public Fuel getWithGasStation(int id)
+        public List<Fuel> getWithGasStation(int id)
         {
             return dbc.selectFuelWithGasStation(id);
         }

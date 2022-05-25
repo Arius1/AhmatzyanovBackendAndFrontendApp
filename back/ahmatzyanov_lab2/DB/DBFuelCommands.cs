@@ -40,11 +40,12 @@ namespace ahmatzyanov_lab2.DB
                 db.SaveChanges();
             }
         }
-        public Fuel selectFuelWithGasStation(int id)
+        public List<Fuel> selectFuelWithGasStation(int id)
         {
             using (GasStationWithFuelsContext db = new GasStationWithFuelsContext())
             {
-                return (Fuel)db.Fuels.Include(f => f.GasStation).FirstOrDefault(gs => gs.Id == id);
+                //return (Fuel)db.Fuels.Include(f => f.GasStation).FirstOrDefault(gs => gs.Id == id);
+                return db.Fuels.Where(f => f.GasStationId == id).ToList();
             }
         }
     }
