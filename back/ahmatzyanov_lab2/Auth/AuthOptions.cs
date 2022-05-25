@@ -14,7 +14,7 @@ namespace ahmatzyanov_lab2.Auth
         public const string Issuer = "GS_Server"; // издатель токена
         public const string Audience = "MyAuthClient"; // потребитель токена
         const string Key = "mysupersecret_secretkey!123";   // ключ для шифрации
-        public const int LifeTime = 5; // время жизни токена
+        public const int LifeTime = 120; // время жизни токена
         public static SymmetricSecurityKey GetSymmetricSecurityKey()
         {
             return new SymmetricSecurityKey(Encoding.ASCII.GetBytes(Key));
