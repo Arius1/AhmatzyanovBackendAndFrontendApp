@@ -47,5 +47,15 @@ namespace ahmatzyanov_lab2.DB
                 return db.Fuels.Where(f => f.GasStationId == id).ToList();
             }
         }
+        public IEnumerable<object> selectFuelWithGasStationBranded(int id)
+        {
+            using (GasStationWithFuelsContext db = new GasStationWithFuelsContext())
+            {
+                var q = from f in db.Fuels.Where(x => x.GasStationId == id)
+                        select new { id = f.Id, brand = f.Brand.ToString(), price = f.Price, value = f.Value, gasStationId = f.GasStationId };
+
+                return q.ToList();
+            }
+        }
     }
 }

@@ -33,25 +33,31 @@ namespace ahmatzyanov_lab2.Controllers
         {
             return fuelService.getWithGasStation(id);
         }
+        [HttpGet("withGasStationBranded/{id}")]
+        public IEnumerable<object> GetWithGasStationBranded(int id)
+        {
+            return fuelService.getWithGasStationBranded(id);
+        }
 
-        [HttpPost]
+        [HttpPost("auth/post/")]
         [Authorize(Roles = "0")]
         public void Post(Fuel fuel)
         {
             fuelService.postFuel(fuel);
         }
 
-        [HttpPut("{id}")]
+        [HttpPut("auth/edit/{id}")]
         [Authorize(Roles = "0")]
         public void Put(int id, Fuel fuel)
         {
             fuelService.putFuel(id, fuel);
         }
 
-        [HttpDelete("delete/{id}")]
+        [HttpDelete("auth/delete/{id}")]
         [Authorize(Roles = "0")]
         public void Delete(int id)
         {
+            Console.WriteLine("delete " + id);
             fuelService.deleteFuel(id);
         }
     }

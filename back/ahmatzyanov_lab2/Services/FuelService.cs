@@ -4,6 +4,7 @@ using System.Linq;
 using System.Threading.Tasks;
 using ahmatzyanov_lab2.DB;
 using ahmatzyanov_lab2.Models;
+using Microsoft.AspNetCore.Mvc;
 
 namespace ahmatzyanov_lab2.Services
 {
@@ -36,6 +37,10 @@ namespace ahmatzyanov_lab2.Services
         public List<Fuel> getWithGasStation(int id)
         {
             return dbc.selectFuelWithGasStation(id);
+        }
+        public IEnumerable<object> getWithGasStationBranded(int id)
+        {
+            return dbc.selectFuelWithGasStationBranded(id);
         }
     }
 }

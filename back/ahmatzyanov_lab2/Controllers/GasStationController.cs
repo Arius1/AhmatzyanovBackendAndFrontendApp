@@ -9,8 +9,6 @@ using ahmatzyanov_lab2.Contexts;
 using Microsoft.AspNetCore.Authorization;
 using static ahmatzyanov_lab2.Models.FuelNames;
 
-// For more information on enabling Web API for empty projects, visit https://go.microsoft.com/fwlink/?LinkID=397860
-
 namespace ahmatzyanov_lab2.Controllers
 {
     [Route("api/[controller]")]
@@ -31,21 +29,21 @@ namespace ahmatzyanov_lab2.Controllers
             return gasStationService.getGasStationById(id);
         }
 
-        [HttpPost]
+        [HttpPost("auth/post/")]
         [Authorize(Roles = "0")]
         public void Post( GasStation gasStation)
         {
             gasStationService.postGasStation(gasStation);
         }
 
-        [HttpPut("{id}")]
+        [HttpPut("auth/edit/{id}")]
         [Authorize(Roles = "0")]
         public void Put(int id, GasStation gasStation)
         {
             gasStationService.putGasStation(id, gasStation);
         }
 
-        [HttpDelete("{id}")]
+        [HttpDelete("auth/delete/{id}")]
         [Authorize(Roles = "0")]
         public void Delete(int id)
         {
@@ -57,7 +55,7 @@ namespace ahmatzyanov_lab2.Controllers
         {
             return gasStationService.getGasStationWithFuels(id);
         }
-        
+       
         [HttpGet("fuelsOnly")]
         [Authorize]
         public IEnumerable<object> GetFuelsOnly()
