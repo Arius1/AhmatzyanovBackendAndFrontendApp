@@ -48,7 +48,7 @@ namespace ahmatzyanov_lab2.Controllers
             fuelService.putFuel(id, fuel);
         }
 
-        [HttpDelete("{id}")]
+        [HttpDelete("delete/{id}")]
         [Authorize(Roles = "0")]
         public void Delete(int id)
         {

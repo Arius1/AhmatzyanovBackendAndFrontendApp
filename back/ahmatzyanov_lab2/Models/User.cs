@@ -28,6 +28,7 @@ namespace ahmatzyanov_lab2.Models
             }
             set { hashPass = new SHA256CryptoServiceProvider().ComputeHash(Encoding.UTF8.GetBytes(value)); }
         }
+        [JsonIgnore]
         public bool IsAdmin => Role == RoleNames.Admin;
         public bool CheckPassword(string password)
         {

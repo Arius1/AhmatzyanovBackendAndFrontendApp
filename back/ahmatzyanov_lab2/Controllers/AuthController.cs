@@ -45,7 +45,13 @@ namespace ahmatzyanov_lab2.Controllers
                     signingCredentials: new SigningCredentials(AuthOptions.GetSymmetricSecurityKey(), SecurityAlgorithms.HmacSha256)); ;
             var encodedJwt = new JwtSecurityTokenHandler().WriteToken(jwt);
 
-            return new { access_token = encodedJwt, user_name = userToFind.login };
+            User userToFindRole;
+            using (AuthContext authContext = new AuthContext())
+            {
+                userToFindRole = (User)authContext.Users.Where(u => u.Login == userToFind.login).FirstOrDefault();
+            }
+
+            return new { access_token = encodedJwt, user_name = userToFind.login, role =  userToFindRole.Role};
         }
 
 
@@ -88,6 +94,14 @@ namespace ahmatzyanov_lab2.Controllers
             using (AuthContext authContext = new AuthContext())
             {
                 return authContext.Users.ToList();
+            }
+        }
+        [HttpGet("byId/{id}")]
+        public User GetUser(int id)
+        {
+            using (AuthContext authContext = new AuthContext())
+            {
+                return authContext.Users.Find(id);
             }
         }
     }
