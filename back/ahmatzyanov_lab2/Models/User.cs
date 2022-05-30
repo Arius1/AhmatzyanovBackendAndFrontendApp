@@ -32,9 +32,15 @@ namespace ahmatzyanov_lab2.Models
         public bool IsAdmin => Role == RoleNames.Admin;
         public bool CheckPassword(string password)
         {
-            byte[] checkedHash = new SHA256CryptoServiceProvider().ComputeHash(Encoding.UTF8.GetBytes(password));
-            return checkedHash.SequenceEqual(this.hashPass);
+            return StringToByteArray(password).SequenceEqual(this.hashPass);
 
+        }
+        public byte[] StringToByteArray(string hex)
+        {
+            return Enumerable.Range(0, hex.Length)
+                             .Where(x => x % 2 == 0)
+                             .Select(x => Convert.ToByte(hex.Substring(x, 2), 16))
+                             .ToArray();
         }
     }
 }
