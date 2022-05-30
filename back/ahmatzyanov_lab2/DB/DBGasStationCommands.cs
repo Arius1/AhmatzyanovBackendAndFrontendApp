@@ -77,5 +77,17 @@ namespace ahmatzyanov_lab2.DB
                 return q.ToList();
             }
         }
+
+        public void editGasStation(int id, GasStation newgs)
+        {
+            using (GasStationWithFuelsContext db = new GasStationWithFuelsContext())
+            {
+                var q = db.GasStations.Find(id);
+                q.Name = newgs.Name;
+                q.Address = newgs.Address;
+                q.PhoneNumber = newgs.PhoneNumber;
+                db.SaveChanges();
+            }
+        }
     }
 }

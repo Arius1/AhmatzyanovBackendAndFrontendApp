@@ -26,9 +26,7 @@ namespace ahmatzyanov_lab2.Services
         }
         public void putGasStation(int id, GasStation newGasStation)
         {
-            GasStation oldGasStation = getGasStationById(id);
-            dbc.deleteGasStation(oldGasStation);
-            dbc.createGasStation(newGasStation);
+            dbc.editGasStation(id, newGasStation);
         }
         public void deleteGasStation(int id)
         {

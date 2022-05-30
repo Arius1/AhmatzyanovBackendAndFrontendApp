@@ -24,6 +24,7 @@ namespace ahmatzyanov_lab2.DB
                 return db.Fuels.Find(id);
             }
         }
+
         public void createFuel(Fuel fuel)
         {
             using (GasStationWithFuelsContext db = new GasStationWithFuelsContext())
@@ -40,6 +41,19 @@ namespace ahmatzyanov_lab2.DB
                 db.SaveChanges();
             }
         }
+
+        public void editFuel(int id, Fuel newFuel)
+        {
+            using (GasStationWithFuelsContext db = new GasStationWithFuelsContext())
+            {
+                var q = db.Fuels.Find(id);
+                q.Brand = newFuel.Brand;
+                q.Price = newFuel.Price;
+                q.Value = newFuel.Value;
+                db.SaveChanges();
+            }
+        }
+
         public List<Fuel> selectFuelWithGasStation(int id)
         {
             using (GasStationWithFuelsContext db = new GasStationWithFuelsContext())

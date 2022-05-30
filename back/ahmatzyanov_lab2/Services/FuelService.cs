@@ -25,9 +25,7 @@ namespace ahmatzyanov_lab2.Services
         }
         public void putFuel(int id, Fuel newFuel)
         {
-            Fuel oldFuel = getFuelById(id);
-            dbc.deleteFuel(oldFuel);
-            dbc.createFuel(newFuel);
+            dbc.editFuel(id, newFuel);
         }
         public void deleteFuel(int id)
         {
