@@ -62,7 +62,7 @@ namespace ahmatzyanov_lab2.DB
             {
                 var q = from gs in db.GasStations
                         join f in db.Fuels on gs.Id equals f.GasStationId
-                        select new { GasStationName = gs.Name, Fuel = f.Brand.ToString() };
+                        select new { GasStationName = gs.Name, Fuel = f.Brand.ToString(), Price = f.Price.ToString() };
                 return q.ToList();
             }
         }

@@ -62,7 +62,7 @@ namespace ahmatzyanov_lab2.Controllers
         {
             return gasStationService.GetFuelsOnly();
         }
-        [HttpGet("fuelsOnlyWithPrice")]
+        [HttpGet("auth/fuelsOnlyWithPrice")]
         [Authorize]
         public IEnumerable<object> GetFuelsOnlyWithPrice()
         {
