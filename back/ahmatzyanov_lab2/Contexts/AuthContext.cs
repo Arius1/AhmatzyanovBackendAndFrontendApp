@@ -13,7 +13,7 @@ namespace ahmatzyanov_lab2.Contexts
 
         public AuthContext()
         {
-            Database.EnsureDeleted();
+            //Database.EnsureDeleted();
             Database.EnsureCreated();
         }
 

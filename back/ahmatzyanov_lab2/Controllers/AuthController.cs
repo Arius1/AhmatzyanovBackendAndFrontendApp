@@ -22,6 +22,16 @@ namespace ahmatzyanov_lab2.Controllers
             public string login { get; set; }
             public string password { get; set; }
         }
+        public struct newUser
+        {
+            public string login { get; set; }
+            public string password { get; set; }
+            public RoleNames role { get; set; }
+        }
+        public struct newhash
+        {
+            public string hash { get; set; }
+        }
         private IEnumerable<Claim> claims;
 
         [HttpPost("token")]
@@ -51,7 +61,7 @@ namespace ahmatzyanov_lab2.Controllers
                 userToFindRole = (User)authContext.Users.Where(u => u.Login == userToFind.login).FirstOrDefault();
             }
 
-            return new { access_token = encodedJwt, user_name = userToFind.login, role =  userToFindRole.Role};
+            return new { access_token = encodedJwt, id = userToFindRole.Id, user_name = userToFind.login, role =  userToFindRole.Role};
         }
 
 
@@ -78,22 +88,29 @@ namespace ahmatzyanov_lab2.Controllers
             }
         }
 
-        [HttpPost]
+        [HttpPost("auth/newUser")]
         [Authorize(Roles = "0")]
-        public void NewUser(User user)
+        public void NewUser(newUser user)
         {
+            User newUser = new User();
+            newUser.Login = user.login;
+            newUser.hashPass = User.StringToByteArray(user.password);
+            newUser.Role = user.role;
+
             using(AuthContext authContext = new AuthContext())
             {
-                authContext.Users.Add(user);
+                authContext.Users.Add(newUser);
                 authContext.SaveChanges();
             }
         }
         [HttpGet]
-        public List<User> GetUsers()
+        public IEnumerable<object> GetUsers()
         {
             using (AuthContext authContext = new AuthContext())
             {
-                return authContext.Users.ToList();
+                var q = from users in authContext.Users
+                        select new { id = users.Id, login = users.Login, role = users.Role.ToString() };
+                return q.ToList();
             }
         }
         [HttpGet("byId/{id}")]
@@ -102,6 +119,28 @@ namespace ahmatzyanov_lab2.Controllers
             using (AuthContext authContext = new AuthContext())
             {
                 return authContext.Users.Find(id);
+            }
+        }
+        [Authorize(Roles = "0")]
+        [HttpDelete("auth/deleteUser/{id}")]
+        public void DeleteUser(int id)
+        {
+            using (AuthContext authContext = new AuthContext())
+            {
+                var q = authContext.Users.Find(id);
+                authContext.Remove(q);
+                authContext.SaveChanges();
+            }
+        }
+        [Authorize]
+        [HttpPost("auth/changepass/{id}")]
+        public void changePass(int id, newhash newhashpass)
+        {
+            using (AuthContext authContext = new AuthContext())
+            {
+                var q = authContext.Users.Find(id);
+                q.hashPass = User.StringToByteArray(newhashpass.hash);
+                authContext.SaveChanges();
             }
         }
     }
