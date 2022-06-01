@@ -1,0 +1,24 @@
+<mat-card>
+    <mat-card-content>
+        <form #f="ngForm" (ngSubmit)="editGS(f.value)">
+            <p>Edit Gas Station Form</p>
+            <mat-form-field>
+                <input matInput type="string" placeholder="Name" ngModel name="name" #pwd="ngModel" required [(ngModel)]="gasStation.name">
+                <mat-error *ngIf="pwd?.errors?.['required']">Name required</mat-error>
+            </mat-form-field>
+            <br>
+            <mat-form-field>
+                <input matInput type="string" placeholder="Address" ngModel name="address" #pwd="ngModel" required [(ngModel)]="gasStation.address">
+                <mat-error *ngIf="pwd?.errors?.['required']">Address required</mat-error>
+            </mat-form-field>
+            <br>
+            <mat-form-field>
+                <input matInput type="number" placeholder="PhoneNumber" ngModel name="phoneNumber" #un="ngModel" required [(ngModel)]="gasStation.phoneNumber">
+                <mat-error *ngIf="un?.errors?.['required']">PhoneNumber required</mat-error>
+            </mat-form-field>
+            <br>
+            <button mat-raised-button type="submit" [disabled]="f.invalid">Accept</button>
+        </form>
+    </mat-card-content>
+</mat-card>
+

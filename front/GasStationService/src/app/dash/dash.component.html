@@ -1,0 +1,9 @@
+<mat-grid-list cols="3" rowHeight="3:1">
+    <mat-toolbar *ngIf="isAdmin()">
+        <button mat-button routerLink="/gsnew">Create new Gas Station</button>
+    </mat-toolbar>
+    <br>
+    <mat-grid-tile *ngFor="let gsd of gasStationData" routerLink="/gsdetail/{{gsd.id}}">
+        {{gsd.name}}
+    </mat-grid-tile>
+</mat-grid-list>

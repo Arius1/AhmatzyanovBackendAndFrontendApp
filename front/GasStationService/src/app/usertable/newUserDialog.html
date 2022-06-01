@@ -1,0 +1,25 @@
+<h1 mat-dialog-title>Create New User</h1>
+<div mat-dialog-content>
+  <mat-form-field appearance="fill">
+    <mat-label>Login</mat-label>
+    <input matInput [(ngModel)]="data.login" required>
+  </mat-form-field>
+  <mat-form-field appearance="fill">
+    <mat-label>Role</mat-label>
+    <mat-select name="role" [(ngModel)]="data.role" required>
+      <mat-option value = "Admin">Admin</mat-option>
+      <mat-option value = "User">User</mat-option>
+    </mat-select>
+  </mat-form-field>
+  <mat-form-field appearance="fill">
+    <mat-label>Enter your password</mat-label>
+    <input matInput [(ngModel)]="data.pass" [type]="hide ? 'password' : 'text'">
+    <button mat-icon-button matSuffix (click)="hide = !hide" [attr.aria-label]="'Hide password'" [attr.aria-pressed]="hide">
+      <mat-icon>{{hide ? 'visibility_off' : 'visibility'}}</mat-icon>
+    </button>
+  </mat-form-field>
+</div>
+<div mat-dialog-actions>
+  <button mat-button (click)="onNoClick()">No Thanks</button>
+  <button mat-button (click)="onYesClick()" cdkFocusInitial>Ok</button>
+</div>

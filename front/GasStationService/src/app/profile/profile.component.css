@@ -1,0 +1,16 @@
+.mat-card {
+    width: 90%;
+    margin-left: 2%;
+    margin-top: 2%;
+}
+.mat-card-content {
+    width: 100%;
+}
+p { 
+    width: 100%;
+    word-break: break-all;
+}
+
+.pass{
+    margin-top: 10px;
+}

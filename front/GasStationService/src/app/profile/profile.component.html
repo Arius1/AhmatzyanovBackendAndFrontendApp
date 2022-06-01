@@ -1,0 +1,15 @@
+<mat-card>
+  <mat-card-content>User Name: {{currentUser}}</mat-card-content>
+  <mat-card-content>User Token: <p>{{currentToken}}</p></mat-card-content>
+  <mat-card-content>User Role: {{currentRole}}</mat-card-content>
+  <button mat-button (click)="changePass()" color="warn">Change Password</button>
+  <br>
+  <form #f="ngForm" (ngSubmit)="change()" *ngIf="isChangePass">
+    <mat-form-field>
+      <input matInput type="password" placeholder="Password" [(ngModel)]="newpass" name="password" #pwd="ngModel" required>
+      <mat-error *ngIf="pwd?.errors?.['required']">Password required</mat-error>
+    </mat-form-field>
+    <br>
+    <button mat-raised-button type="submit" [disabled]="f.invalid">Submit</button>
+  </form>
+</mat-card>

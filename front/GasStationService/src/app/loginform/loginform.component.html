@@ -1,0 +1,21 @@
+<div class="login-content">
+  <mat-card>
+    <mat-card-content>
+      <form #f="ngForm" (ngSubmit)="Login(f.value)">
+        <p>{{msg}}</p>
+        <mat-form-field>
+          <input matInput type="text" placeholder="User Name" ngModel name="login" #un="ngModel" required
+            (input)="ResetMsg()">
+          <mat-error *ngIf="un?.errors?.['required']">Login required</mat-error>
+        </mat-form-field>
+        <mat-form-field>
+          <input matInput type="password" placeholder="Password" ngModel name="password" #pwd="ngModel" required
+            (input)="ResetMsg()">
+          <mat-error *ngIf="pwd?.errors?.['required']">Password required</mat-error>
+        </mat-form-field>
+        <button mat-raised-button type="submit" [disabled]="f.invalid">Log In
+        </button>
+      </form>
+    </mat-card-content>
+  </mat-card>
+</div>
